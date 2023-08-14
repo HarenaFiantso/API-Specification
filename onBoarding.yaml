@@ -1,0 +1,46 @@
+openapi: 3.0.8
+info:
+  title: API d'Onboarding
+  version: 1.0.11
+servers:
+  - url: http://STD22086.com
+paths:
+  /students:
+    get:
+      summary: Récupérer les informations des étudiants
+      responses:
+        "200":
+          description: Succès !
+          content:
+            application/json:
+              example:
+                student_id: 22001
+                name: Koto
+                age: 20
+        "500":
+          description: Erreur !
+          content:
+            application/json:
+              example:
+                message: Une erreur s'est produite lors de la récupération
+    post:
+      summary: Ajouter un nouvel étudiant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: Lita
+              age: 21
+      responses:
+        "200":
+          description: Succès !
+          content:
+            application/json:
+              example:
+                message: Étudiant ajouté avec succès
+        "500":
+          description: Erreu !
+          content:
+            application/json:
+              example: Une erreur s'est produite lors de l'ajout de l'étudiant
