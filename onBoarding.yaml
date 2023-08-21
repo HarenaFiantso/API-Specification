@@ -8,6 +8,8 @@ paths:
   /students:
     get:
       summary: Récupérer les informations des étudiants
+      tags:
+        - Étudiants
       responses:
         "200":
           description: Succès !
@@ -15,8 +17,8 @@ paths:
             application/json:
               example:
                 student_id: 22001
-                name: Koto
-                age: 20
+                name: Fiantso
+                age: 18
         "500":
           description: Erreur !
           content:
@@ -25,13 +27,15 @@ paths:
                 message: Une erreur s'est produite lors de la récupération
     post:
       summary: Ajouter un nouvel étudiant
+      tags:
+        - Étudiants
       requestBody:
         required: true
         content:
           application/json:
             example:
-              name: Lita
-              age: 21
+              name: Harena
+              age: 19
       responses:
         "200":
           description: Succès !
@@ -40,7 +44,103 @@ paths:
               example:
                 message: Étudiant ajouté avec succès
         "500":
-          description: Erreu !
+          description: Erreur !
           content:
             application/json:
               example: Une erreur s'est produite lors de l'ajout de l'étudiant
+    put:
+      summary: Mettre à jour les informations d'un étudiant
+      tags:
+        - Étudiants
+      parameters:
+        - in: query
+          name: student_id
+          schema:
+            type: integer
+          required: true
+          description: ID de l'étudiant à mettre à jour
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: Fiantso Harena
+              age: 69
+      responses:
+        "200":
+          description: Succès !
+          content:
+            application/json:
+              example:
+                message: Informations de l'étudiant mises à jour avec succès
+        "500":
+          description: Erreur !
+          content:
+            application/json:
+              example: Une erreur s'est produite lors de la mise à jour de l'étudiant
+    delete:
+      summary: Supprimer un étudiant
+      tags:
+        - Étudiants
+      parameters:
+        - in: query
+          name: student_id
+          schema:
+            type: integer
+          required: true
+          description: ID de l'étudiant à supprimer
+      responses:
+        "200":
+          description: Succès !
+          content:
+            application/json:
+              example:
+                message: Étudiant supprimé avec succès
+        "500":
+          description: Erreur !
+          content:
+            application/json:
+              example: Une erreur s'est produite lors de la suppression de l'étudiant
+  /teachers:
+    get:
+      summary: Récupérer les informations des enseignants
+      tags:
+        - Enseignants
+      responses:
+        "200":
+          description: Succès !
+          content:
+            application/json:
+              example:
+                teacher_id: 1234
+                name: Toky
+                subject: PROG2
+        "500":
+          description: Erreur !
+          content:
+            application/json:
+              example:
+                message: Une erreur s'est produite lors de la récupération
+    post:
+      summary: Ajouter un nouvel enseignant
+      tags:
+        - Enseignants
+      requestBody:
+        required: true
+        content:
+          application/json:
+            example:
+              name: Ryan
+              subject: API
+      responses:
+        "200":
+          description: Succès !
+          content:
+            application/json:
+              example:
+                message: Enseignant ajouté avec succès
+        "500":
+          description: Erreur !
+          content:
+            application/json:
+              example: Une erreur s'est produite lors de l'ajout de l'enseignant
